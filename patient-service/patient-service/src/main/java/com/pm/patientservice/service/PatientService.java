@@ -2,6 +2,7 @@ package com.pm.patientservice.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pm.patientservice.dto.PatientResponseDTO;
@@ -11,11 +12,9 @@ import com.pm.patientservice.repository.PatientRepository;
 
 @Service
 public class PatientService {
+    @Autowired
     private PatientRepository patientRepository;
-
-    public PatientService(PatientRepository patientRepository) {
-        this.patientRepository = patientRepository;
-    }
+    
     public List<PatientResponseDTO> getPatients(){
         List<Patient> patients=patientRepository.findAll();
         List<PatientResponseDTO> patientResponseDTOs=patients.stream()
