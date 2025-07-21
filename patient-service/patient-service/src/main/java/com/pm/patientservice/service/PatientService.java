@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pm.patientservice.dto.PatientRequestDTO;
 import com.pm.patientservice.dto.PatientResponseDTO;
 import com.pm.patientservice.mapper.PatientMapper;
 import com.pm.patientservice.model.Patient;
@@ -21,5 +22,10 @@ public class PatientService {
                 .map(patient -> PatientMapper.toDTO(patient))
                 .toList();
         return patientResponseDTOs;
+    }
+    
+    public PatientResponseDTO createPatient(PatientRequestDTO patientRequestDTO){
+        Patient patient=patientRepository.save(PatientMapper.toModel(patientRequestDTO));
+        return PatientMapper.toDTO(patient);
     }
 }
